@@ -1,0 +1,33 @@
+# Grafana is bundled with dashboard + prometheus setup on microk8s. One can
+# use it without this ingress with port forwarding:
+#
+# ```
+# k port-forward -n monitoring service/grafana 3000:3000 --address 0.0.0.0
+# ```
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana 
+  namespace: monitoring # is the default when installing grafana with microk8s
+  annotations: # depend on ingress and cert manager setup
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod 
+spec:
+  tls: 
+  - hosts:
+    - grafana.cluster.porkbrain.com
+    secretName: grafana-tls
+  rules:
+  - host: grafana.cluster.porkbrain.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: grafana 
+            port:
+              number: 3000 # k get services -n monitoring for more info
+        path: /
+        pathType: ImplementationSpecific 
+
