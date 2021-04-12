@@ -1,3 +1,14 @@
+# 2021-04-12
+I installed the cluster in its permanent location. It now runs two apps and
+I've set up nginx ingress controller for an easy access over a domain name.
+Following the kube101 series, it was straightforward to set up `cert-manager`
+and obtain TLS with Let's Encrypt. 
+
+![A front view on `gloss` and `romba` nodes](photos/2021-04-12-front.jpeg)
+![A side view of `dcapo`, `panda` and `rasp1`
+nodes](photos/2021-04-12-front.jpeg)
+
+
 # 2021-04-08
 Last week I stumbled on a website which sells refurbished servers. I was
 hooked. However, I figured that paying a few hundred pounds was not a smart
