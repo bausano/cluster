@@ -19,7 +19,7 @@ To access grafana, forward the port with:
 microk8s kubectl port-forward -n monitoring service/grafana 3000:3000 --address 0.0.0.0
 ```
 
-Note that by default grafana, unlike the dashboard proxy, doesn't use SSL[^2].
+Note that by default grafana, unlike the dashboard proxy, doesn't use TLS[^2].
 
 ## Issues
 ### High resource usage
@@ -42,8 +42,8 @@ Happened to me when adding one node.
 
 ### Hostname as IP instead of name
 To get hostname as node name, the node IP must be present in the `/etc/hosts`
-file. See the [`setup.md`](setup.md) for list of nodes and their IPs on the
-home network. 
+file. See the [`setup.md`](nodes.md#setup) for list of nodes and their IPs on
+the home network. 
 
 - [https://serverfault.com/q/1059356/442421]
 
