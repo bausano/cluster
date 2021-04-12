@@ -1,0 +1,64 @@
+# An example of a deployment config for an app which is supposed to be exposed
+# (either to the rest of the cluster or to the public internet). If you don't
+# need to expose any port, don't use the `Service` kind.
+#
+# We mount a local storage as we've set it up in the ./storage.yml. It is more
+# logical to keep the `PersistentVolumeClaim` together with the deployment.
+
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: hellow
+  namespace: hellow
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hellow
+  template:
+    metadata:
+      labels:
+        app: hellow
+    spec:
+      # to pull images from a private registry, one must create a secret with
+      # `k create secret docker-registry regcred ... -n hellow`
+      # IMPORTANT: configure namespace with care
+      imagePullSecrets:
+      - name: regcred
+      volumes:
+      - name: hellow-data
+        persistentVolumeClaim:
+          claimName: hellow-pvc # as defined in storage.yml
+      containers:
+        - name: hellow
+          image: 'strm/helloworld-http'
+          volumeMounts:
+          - mountPath: /data
+            name: hellow-data
+          ports:
+            - containerPort: 80
+          env:
+          - name: VERSION_CONTROLLED_ENV_VAR
+            value: "80"
+          - name: SECRET_ENV_VAR
+            valueFrom:
+              secretKeyRef:              # k create secret generic \
+                name: hellow-some-secret # hellow-some-secret \
+                key: some_key            # --from-literal=some_key=xxx \
+                                         # -n hellow
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: hellow
+  namespace: hellow
+spec:
+  type: NodePort # or ClusterIP which would disable access from outside
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: hellow
+

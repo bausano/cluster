@@ -1,0 +1,43 @@
+# An example of how to set up the most primitive persistence class, a local
+# storage, on a specific node. The storage can then be mounted into a container
+# (see the ./svc.yml).
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: hellow-pv
+  namespace: hellow
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: local-storage
+  local:
+    path: /var/local/hellow
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - dcapo # or any other node in the cluster
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: hellow-pvc
+  namespace: hellow
+spec:
+  storageClassName: local-storage
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi # or anything less than the 1Gi allocated above
+

@@ -1,0 +1,40 @@
+# This config assumes there's an ingres controller set up, specifically nginx,
+# and a cert manager.
+#
+# When you apply this config, it attempts a ACME challenge and assigns a Let's
+# Encrypt certificate for the service.
+#
+# The ingress controller will direct all traffic coming at the external IP with
+# host header "hellow.cluster.porkbrain.com" to the hellow service. Akin to
+# apache's vhosts.
+#
+# ```
+# k get svc ingress-nginx-controller
+# ```
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hellow
+  namespace: hellow
+  annotations:
+    kubernetes.io/ingress.class: nginx # depends on the controller
+    cert-manager.io/cluster-issuer: letsencrypt-prod # depends on issuer setup
+spec:
+  tls:
+  - hosts:
+    - hellow.cluster.porkbrain.com
+    secretName: hellow-tls
+  rules:
+  - host: hellow.cluster.porkbrain.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: hellow
+            port:
+              number: 80
+        path: /
+        pathType: ImplementationSpecific # | "Exact" | "Prefix"
+
