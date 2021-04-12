@@ -1,3 +1,7 @@
+```sql
+SELECT * FROM entries ORDER BY created_at DESC;
+```
+
 # 2021-04-12
 I installed the cluster in its permanent location.
 
