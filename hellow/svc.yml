@@ -2,8 +2,9 @@
 # (either to the rest of the cluster or to the public internet). If you don't
 # need to expose any port, don't use the `Service` kind.
 #
-# We mount a local storage as we've set it up in the ./storage.yml. It is more
-# logical to keep the `PersistentVolumeClaim` together with the deployment.
+# We mount a local storage as we've set it up in the ./storage.yml. Although
+# the `PersistentVolumeClaim` logically belongs to a `Deployment`, I decided to
+# divide it conceptually in these docs.
 
 ---
 kind: Deployment
