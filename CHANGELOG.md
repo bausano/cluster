@@ -2,11 +2,11 @@
 I installed the cluster in its permanent location. It now runs two apps and
 I've set up nginx ingress controller for an easy access over a domain name.
 Following the kube101 series, it was straightforward to set up `cert-manager`
-and obtain TLS with Let's Encrypt. 
+and obtain TLS with Let's Encrypt.
 
-![A front view on `gloss` and `romba` nodes](photos/2021-04-12-front.jpeg)
+![A front view on `gloss` and `romba` nodes](_photos/2021-04-12-front.jpeg)
 ![A side view of `dcapo`, `panda` and `rasp1`
-nodes](photos/2021-04-12-side.jpeg)
+nodes](_photos/2021-04-12-side.jpeg)
 
 
 # 2021-04-08
@@ -14,7 +14,7 @@ Last week I stumbled on a website which sells refurbished servers. I was
 hooked. However, I figured that paying a few hundred pounds was not a smart
 move as I had no idea what I was doing; building a server?! Instead, I gathered
 electronic scrap I found around my parents' house: my old laptop, pi, some old
-computers, cables tossed around in dark places, an old switch. 
+computers, cables tossed around in dark places, an old switch.
 
 I experimented with Ubuntu server 20.04. I was pleasantly surprised with the
 install wizard. It asked me for my Github username and then imported my SSH
@@ -26,18 +26,18 @@ monitoring. I decided I would come back to this later and built an ugly case
 which held all the machines.
 
 ![A wooden case, one machine on a screen mount, some machines inside
-](photos/2021-04-08-building-case.jpeg)
+](_photos/2021-04-08-building-case.jpeg)
 
 For the effect, I included an old monitor.
 
-![The switch is mounted on the side](photos/2021-04-08-case-from-side.jpeg)
+![The switch is mounted on the side](_photos/2021-04-08-case-from-side.jpeg)
 ![The old monitor is there for future if I need to reflash the
-machines](photos/2021-04-08-case-with-monitor.jpeg)
+machines](_photos/2021-04-08-case-with-monitor.jpeg)
 
 I would be moving the cluster to another location, the basement, in a week.
 Hopefully by the I will have figured out less eye damaging cable work.
 
-![The mounted switch and another machine](photos/2021-04-08-case-back.jpeg)
+![The mounted switch and another machine](_photos/2021-04-08-case-back.jpeg)
 
 Now that the part scavenging and the drilling (to mount the parts) was over, I
 dove into k8s. The high CPU usage I mentioned annoyed me. I experimented with
@@ -57,12 +57,12 @@ job](https://github.com/bausano/suckless.hn/tree/master/k8s). It took about 6
 hours but having to write the config files, debug issues and setup the
 environment was illuminating. Having some kind of feel for the aesthetic
 zeitgeist k8s were born in, as of now I cleared some uncertainty about this
-technology going further. 
+technology going further.
 
 Then I set up grafana, k8s data visualization tool. Because who doesn't like
 pretty graphs.
 
-![grafana node monitoring](photos/grafana-preview.png)
+![grafana node monitoring](_photos/grafana-preview.png)
 
 This was a lot of work and silly mistakes. On the plus side, I hope to stop
 paying the AWS EC2 troll toll soon.
