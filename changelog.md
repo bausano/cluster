@@ -6,7 +6,7 @@ and obtain TLS with Let's Encrypt.
 
 ![A front view on `gloss` and `romba` nodes](photos/2021-04-12-front.jpeg)
 ![A side view of `dcapo`, `panda` and `rasp1`
-nodes](photos/2021-04-12-front.jpeg)
+nodes](photos/2021-04-12-side.jpeg)
 
 
 # 2021-04-08
