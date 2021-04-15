@@ -13,6 +13,8 @@ metadata:
   name: hellow
   namespace: hellow
 spec:
+  # this allows for a trick: in order to "stop" a deployment, one can
+  # `k scale --replicas=0 deployment/hellow -n hellow`
   replicas: 1
   selector:
     matchLabels:
@@ -27,6 +29,7 @@ spec:
       # IMPORTANT: configure namespace with care
       imagePullSecrets:
       - name: regcred
+      imagePullPolicy: Always # | "Never" | "IfNotPresent"
       volumes:
       - name: hellow-data
         persistentVolumeClaim:
