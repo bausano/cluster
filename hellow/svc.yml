@@ -29,7 +29,6 @@ spec:
       # IMPORTANT: configure namespace with care
       imagePullSecrets:
       - name: regcred
-      imagePullPolicy: Always # | "Never" | "IfNotPresent"
       volumes:
       - name: hellow-data
         persistentVolumeClaim:
@@ -37,6 +36,7 @@ spec:
       containers:
         - name: hellow
           image: 'strm/helloworld-http'
+          imagePullPolicy: Always # | "Never" | "IfNotPresent"
           volumeMounts:
           - mountPath: /data
             name: hellow-data
